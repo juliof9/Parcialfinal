@@ -72,9 +72,39 @@ let app = {
                     event.preventDefault();
                     let old = element.parentElement.parentElement;
                     let tr = document.createElement('tr');
-                    tr.innerHTML = ``
-                })
-            })
+                    tr.innerHTML = `<form>
+                                        <td class = "id">
+                                            <input type = "text" name = "id" readonly value = "id">
+                                        </td>
+                                        <td>
+                                            <input type = "text" name = "username">
+                                        </td>
+                                        <td>
+                                            <input type = "text" name = "name">
+                                        </td>
+                                        <td>
+                                            <input type = "text" name = "lastname">
+                                        </td>
+                                        <td>
+                                            <input type = "submit" value = "Save">
+                                        </td>
+                                    </form>`;
+                    tbody.replace.getchild(tr,old);
+                });
+            });
         }
+        addEvents();
     },
+    loadcontent: function(){
+        fetch('/users',{
+            method: 'GET'
+        }).then(res => res.json())
+        .then(data => {
+            if(data.ok){
+                data.user.forEach(element => {
+                    this.addRow(element);
+                });
+            }
+        });
+    }
 }
