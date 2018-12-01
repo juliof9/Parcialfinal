@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var UserModel = require('/..models/User');
+var UserModel = require('../models/User');
 
 let controller = {};
 
