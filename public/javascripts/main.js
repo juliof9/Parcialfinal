@@ -46,12 +46,35 @@ let app = {
                             <a class = "delete" href = "#"> Delete </a>
                             <a class = "update" href = "#"> Update </a>
                         </td>`;
-        let tbody = document.getElementsByClassName("listUser")[0];
+        let tbody = document.getElementsByClassName("listUsers")[0];
         tbody.appendChild(tr);
-        let addEvents = () =>{
-            document.querySelectorAll(".delete").forEach(elements => {
-                element
+        let addEvents = () => {
+            document.querySelectorAll(".delete").forEach(element => {
+                element.addEventListener("click", function(event){
+                    event.preventDefault();
+                    let id = element.parentElement.parentElement.getElementsByClassName("id")[0].innerText;
+                    fetch('/users/'+ id,{
+                        method: 'DELETE'
+                    }).then(res => res.json())
+                    .then(data => {
+                        if(data.ok){
+                            let tbody = document.getElementsByClassName("listUsers")[0];
+                            tbody.removeChild(element.parentElement.parentElement);
+                        } else{
+                            let errors = document.getElementsByClassName("errors")[0];
+                            errors.innerText = data.err.message;
+                        }
+                    });
+                });
             });
+            document.querySelectorAll(".update").forEach(element => {
+                element.addEventListener('click', function(event){
+                    event.preventDefault();
+                    let old = element.parentElement.parentElement;
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = ``
+                })
+            })
         }
     },
 }
