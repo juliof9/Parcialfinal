@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost/parcial2', {useNewUrlParser: true})
             console.log("Connect Success!");
         })
         .catch(err => {
-            console.log("No se pudo establecer la conexcion a la base de datos");
+            console.log("No se pudo establecer la conexion a la base de datos");
             console.log(err);
         });
 
