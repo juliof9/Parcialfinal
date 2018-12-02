@@ -20,7 +20,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/3000', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/parcial2', {useNewUrlParser: true})
         .then(() => {
             console.log("Connect Success!");
         })
